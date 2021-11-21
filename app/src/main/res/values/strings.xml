@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CalcApp</string>
+    <string name="app_name">Калькулятор</string>
     <string name="key_9">9</string>
     <string name="num_9">9</string>
     <string name="num_8">8</string>
