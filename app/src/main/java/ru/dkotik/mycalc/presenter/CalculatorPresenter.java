@@ -20,7 +20,7 @@ public class CalculatorPresenter {
     }
 
     public void onDotPressed() {
-        if (!isLastOperator()) {
+        if (!isLastOperator() && !isLastDot()) {
             ex.append(".");
         }
         view.showResult(ex.toString());
@@ -36,18 +36,21 @@ public class CalculatorPresenter {
     }
 
     public void onOperationPressed(Operation operation) {
+        if (isLastDot()) {
+            return;
+        }
         if (ex.length() == 1) {
             if (operation.getSign().equals("-")) {
                 if (isStart()) {
                     ex = new StringBuilder("-");
-                } else {
-                    ex.append(operation.getSign());
                 }
             } else if (operation.getSign().equals("+")) {
                 if (ex.toString().equals("-")) {
                     ex = new StringBuilder("0");
+                } else {
+                    ex.append(operation.getSign());
                 }
-            } else {
+            } else if (!isLastOperator()){
                 ex.append(operation.getSign());
             }
         } else {
@@ -94,5 +97,9 @@ public class CalculatorPresenter {
             }
         }
         return false;
+    }
+
+    private boolean isLastDot() {
+        return String.valueOf(ex.charAt(ex.length() - 1)).equals(".");
     }
 }
