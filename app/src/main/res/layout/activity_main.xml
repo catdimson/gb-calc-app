@@ -5,11 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
-    tools:context=".MainActivity"
-    android:background="@color/black"
+    tools:context=".view.MainActivity"
+    android:background="@color/white"
     android:layout_column="4">
 
     <TextView
+        android:id="@+id/result"
         android:layout_width="0dp"
         android:layout_height="80dp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -17,6 +18,7 @@
         app:layout_constraintBottom_toTopOf="@id/key_del"
         android:gravity="right"
         android:textSize="48sp"
+        android:text="@string/start_result_value"
         tools:ignore="RtlHardcoded"/>
     
     <Button
