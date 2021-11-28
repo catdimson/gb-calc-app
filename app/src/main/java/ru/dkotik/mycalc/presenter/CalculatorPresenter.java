@@ -17,6 +17,10 @@ public class CalculatorPresenter {
         this.ex = new StringBuilder("0");
     }
 
+    public void refreshStates(String ex) {
+        this.ex = new StringBuilder(ex);
+    }
+
     public void onDotPressed() {
         if (!isLastOperator() && !isLastDot() && !dotInLineFlag) {
             ex.append(".");

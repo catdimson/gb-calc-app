@@ -1,5 +1,6 @@
 package ru.dkotik.mycalc.view;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements CalculatorView {
 
     private TextView result;
     private CalculatorPresenter presenter;
+    private static final String EXPRESSION = "EXPRESSION";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +111,20 @@ public class MainActivity extends AppCompatActivity implements CalculatorView {
                 presenter.onDeletePressed();
             }
         });
+
+        if (savedInstanceState != null) {
+            String ex = savedInstanceState.getString(EXPRESSION);
+            ((TextView)findViewById(R.id.result)).setText(ex);
+            presenter.refreshStates(ex);
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        TextView res = findViewById(R.id.result);
+        outState.putString(EXPRESSION, res.getText().toString().trim());
     }
 
     @Override
