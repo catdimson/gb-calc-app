@@ -1,8 +1,5 @@
 package ru.dkotik.mycalc.presenter;
 
-import android.widget.TextView;
-
-import ru.dkotik.mycalc.R;
 import ru.dkotik.mycalc.model.Calculator;
 import ru.dkotik.mycalc.model.Operation;
 import ru.dkotik.mycalc.view.CalculatorView;
@@ -12,6 +9,7 @@ public class CalculatorPresenter {
     private final CalculatorView view;
     private final Calculator calculator;
     private StringBuilder ex;
+    private boolean dotInLineFlag = false;
 
     public CalculatorPresenter(CalculatorView view, Calculator calculator) {
         this.view = view;
@@ -20,8 +18,9 @@ public class CalculatorPresenter {
     }
 
     public void onDotPressed() {
-        if (!isLastOperator() && !isLastDot()) {
+        if (!isLastOperator() && !isLastDot() && !dotInLineFlag) {
             ex.append(".");
+            dotInLineFlag = true;
         }
         view.showResult(ex.toString());
     }
@@ -49,13 +48,16 @@ public class CalculatorPresenter {
                     ex = new StringBuilder("0");
                 } else {
                     ex.append(operation.getSign());
+                    dotInLineFlag = false;
                 }
             } else if (!isLastOperator()){
                 ex.append(operation.getSign());
+                dotInLineFlag = false;
             }
         } else {
             if (!isLastOperator()) {
                 ex.append(operation.getSign());
+                dotInLineFlag = false;
             } else {
                 ex.replace(ex.length() - 1, ex.length(), operation.getSign());
             }
@@ -64,13 +66,14 @@ public class CalculatorPresenter {
     }
 
     public void onResultPressed() {
-        // добавить историю
+        // добавить историю, если хватит времени
         ex = new StringBuilder(calculator.calculate(ex.toString()));
         view.showResult(ex.toString());
     }
 
     public void onCleanPressed() {
         ex = new StringBuilder("0");
+        dotInLineFlag = false;
         view.showResult(ex.toString());
     }
 
@@ -78,6 +81,9 @@ public class CalculatorPresenter {
         if (ex.length() == 1) {
             ex = new StringBuilder("0");
         } else {
+            if (ex.charAt(ex.length() - 1) == '.') {
+                dotInLineFlag = false;
+            };
             ex.deleteCharAt(ex.length() - 1);
             if (ex.length() == 1 && ex.toString().equals("-")) {
                 ex = new StringBuilder("0");
