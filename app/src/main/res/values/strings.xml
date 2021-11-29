@@ -21,6 +21,8 @@
     <string name="div">÷</string>
     <string name="mult">x</string>
     <string name="start_result_value">0</string>
+    <string name="show_toast">show_toast</string>
+    <string name="toast_fired">Toast Fired!</string>
 
 
 </resources>
