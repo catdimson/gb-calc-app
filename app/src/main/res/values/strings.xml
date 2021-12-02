@@ -23,6 +23,11 @@
     <string name="start_result_value">0</string>
     <string name="show_toast">show_toast</string>
     <string name="toast_fired">Toast Fired!</string>
+    <string name="theme_one">Черная</string>
+    <string name="theme_two">Красная</string>
+    <string name="theme_three">Оранжевая</string>
+    <string name="theme_choose">Выбрать тему</string>
+    <string name="theme_item">Элемент списка тем</string>
 
 
 </resources>

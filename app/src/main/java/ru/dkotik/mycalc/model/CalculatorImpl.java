@@ -23,7 +23,7 @@ public class CalculatorImpl implements Calculator {
         try {
             Double jsResult = (Double) engine.eval(ex);
             result = String.valueOf(new BigDecimal(jsResult).setScale(5, RoundingMode.HALF_EVEN).doubleValue());
-        } catch (ScriptException e) {
+        } catch (ScriptException | NumberFormatException e) {
             e.printStackTrace();
             result = "Ошибка вычисления";
         }

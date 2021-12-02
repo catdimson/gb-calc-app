@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="CalcButton" parent="@style/Widget.MaterialComponents.Button">
-        <item name="android:layout_height">@dimen/layout_height_default</item>
+    <!--размеры-->
+    <style name="CalcButtonGeomAndSize" parent="@style/Widget.MaterialComponents.Button">
         <item name="android:textSize">@dimen/button_text_size_default</item>
+        <item name="android:layout_height">@dimen/layout_height_default</item>
+    </style>
+
+    <!--цвета цифр и точки-->
+    <style name="CalcButtonGeomAndSize.BlackButtonStyle">
         <item name="android:backgroundTint">@color/dark_gray</item>
     </style>
-
-    <style name="CalcButton.OperationButton">
-        <item name="android:backgroundTint">@color/blue</item>
+    <style name="CalcButtonGeomAndSize.RedButtonStyle">
+        <item name="android:backgroundTint">@color/red</item>
+    </style>
+    <style name="CalcButtonGeomAndSize.OrangeButtonStyle">
+        <item name="android:backgroundTint">@color/orange</item>
     </style>
 
-    <style name="CalcButton.CleanButton">
+    <!--цвета для операций-->
+    <style name="CalcButtonGeomAndSize.CleanButton">
         <item name="android:backgroundTint">@color/gray</item>
+    </style>
+    <style name="CalcButtonGeomAndSize.OperationButton">
+        <item name="android:backgroundTint">@color/blue</item>
     </style>
 </resources>

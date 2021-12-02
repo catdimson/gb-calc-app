@@ -10,6 +10,7 @@ public class CalculatorPresenter {
     private final Calculator calculator;
     private StringBuilder ex;
     private boolean dotInLineFlag = false;
+    private boolean cleanAll = false;
 
     public CalculatorPresenter(CalculatorView view, Calculator calculator) {
         this.view = view;
@@ -22,7 +23,8 @@ public class CalculatorPresenter {
     }
 
     public void onDotPressed() {
-        if (!isLastOperator() && !isLastDot() && !dotInLineFlag) {
+        doClean(cleanAll);
+        if (ex.toString().isEmpty() || (!isLastOperator() && !isLastDot() && !dotInLineFlag)) {
             ex.append(".");
             dotInLineFlag = true;
         }
@@ -30,6 +32,7 @@ public class CalculatorPresenter {
     }
 
     public void onDigitPressed(int digit) {
+        doClean(cleanAll);
         if (isStart()) {
             ex = new StringBuilder(String.valueOf(digit));
         } else {
@@ -39,13 +42,16 @@ public class CalculatorPresenter {
     }
 
     public void onOperationPressed(Operation operation) {
-        if (isLastDot()) {
+        doClean(cleanAll);
+        if (ex.toString().isEmpty() || isLastDot()) {
             return;
         }
         if (ex.length() == 1) {
             if (operation.getSign().equals("-")) {
                 if (isStart()) {
                     ex = new StringBuilder("-");
+                } else {
+                    ex.append("-");
                 }
             } else if (operation.getSign().equals("+")) {
                 if (ex.toString().equals("-")) {
@@ -70,24 +76,35 @@ public class CalculatorPresenter {
     }
 
     public void onResultPressed() {
+        doClean(cleanAll);
         // добавить историю, если хватит времени
         ex = new StringBuilder(calculator.calculate(ex.toString()));
-        view.showResult(ex.toString());
+        String result = ex.toString();
+        if (!result.equals("Ошибка вычисления")) {
+            if (result.contains(".")) {
+                dotInLineFlag = true;
+            }
+        } else {
+            cleanAll = true;
+        }
+        view.showResult(result);
     }
 
     public void onCleanPressed() {
+        doClean(cleanAll);
         ex = new StringBuilder("0");
         dotInLineFlag = false;
         view.showResult(ex.toString());
     }
 
     public void onDeletePressed() {
+        doClean(cleanAll);
         if (ex.length() == 1) {
             ex = new StringBuilder("0");
         } else {
             if (ex.charAt(ex.length() - 1) == '.') {
                 dotInLineFlag = false;
-            };
+            }
             ex.deleteCharAt(ex.length() - 1);
             if (ex.length() == 1 && ex.toString().equals("-")) {
                 ex = new StringBuilder("0");
@@ -111,5 +128,12 @@ public class CalculatorPresenter {
 
     private boolean isLastDot() {
         return String.valueOf(ex.charAt(ex.length() - 1)).equals(".");
+    }
+
+    private void doClean(boolean cleanAll) {
+        if (cleanAll) {
+            this.cleanAll = false;
+            this.ex = new StringBuilder("");
+        }
     }
 }
