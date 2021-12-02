@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="num_0">N</string>
+    <string name="num_1">I</string>
+    <string name="num_2">II</string>
+    <string name="num_3">III</string>
+    <string name="num_4">IV</string>
+    <string name="num_5">V</string>
+    <string name="num_6">VI</string>
+    <string name="num_7">VII</string>
+    <string name="num_8">VIII</string>
+    <string name="num_9">IX</string>
+</resources>

@@ -3,9 +3,12 @@ package ru.dkotik.mycalc.view;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -117,6 +120,18 @@ public class MainActivity extends AppCompatActivity implements CalculatorView {
             ((TextView)findViewById(R.id.result)).setText(ex);
             presenter.refreshStates(ex);
         }
+
+//        Тестирование кнопки для тоста
+//        Button showToastBtn = findViewById(R.id.show_toast);
+//        if (showToastBtn != null) {
+//            showToastBtn.setOnClickListener(new View.OnClickListener() {
+//                @SuppressLint("ShowToast")
+//                @Override
+//                public void onClick(View v) {
+//                    Toast.makeText(MainActivity.this, R.string.toast_fired, Toast.LENGTH_LONG);
+//                }
+//            });
+//        }
     }
 
     @Override

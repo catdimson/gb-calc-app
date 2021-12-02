@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CalcButton" parent="@style/Widget.MaterialComponents.Button">
+        <item name="android:layout_height">@dimen/layout_height_default</item>
+        <item name="android:textSize">@dimen/button_text_size_default</item>
+        <item name="android:backgroundTint">@color/dark_gray</item>
+    </style>
+
+    <style name="CalcButton.OperationButton">
+        <item name="android:backgroundTint">@color/blue</item>
+    </style>
+
+    <style name="CalcButton.CleanButton">
+        <item name="android:backgroundTint">@color/gray</item>
+    </style>
+</resources>
