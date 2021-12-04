@@ -1,9 +1,15 @@
 package ru.dkotik.mycalc.view;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,18 +22,42 @@ import java.util.Map;
 import ru.dkotik.mycalc.R;
 import ru.dkotik.mycalc.model.CalculatorImpl;
 import ru.dkotik.mycalc.model.Operation;
+import ru.dkotik.mycalc.model.Theme;
 import ru.dkotik.mycalc.presenter.CalculatorPresenter;
+import ru.dkotik.mycalc.storage.ThemeStorage;
 import ru.dkotik.mycalc.view.CalculatorView;
 
 public class MainActivity extends AppCompatActivity implements CalculatorView {
 
     private TextView result;
+    private ThemeStorage storage;
     private CalculatorPresenter presenter;
     private static final String EXPRESSION = "EXPRESSION";
+
+    private final ActivityResultLauncher<Intent> launcher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        Theme theme = (Theme) result.getData().getSerializableExtra(SelectThemeActivity.EXTRA_THEME);
+
+                        storage.saveTheme(theme);
+
+                        recreate();
+                    }
+                }
+    });
+
+    // Здесь будет решение задания из 5 урока
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        storage = new ThemeStorage(this);
+        setTheme(storage.getSavedTheme().getTheme());
+
         setContentView(R.layout.activity_main);
 
         presenter = new CalculatorPresenter(this, new CalculatorImpl());
@@ -121,17 +151,15 @@ public class MainActivity extends AppCompatActivity implements CalculatorView {
             presenter.refreshStates(ex);
         }
 
-//        Тестирование кнопки для тоста
-//        Button showToastBtn = findViewById(R.id.show_toast);
-//        if (showToastBtn != null) {
-//            showToastBtn.setOnClickListener(new View.OnClickListener() {
-//                @SuppressLint("ShowToast")
-//                @Override
-//                public void onClick(View v) {
-//                    Toast.makeText(MainActivity.this, R.string.toast_fired, Toast.LENGTH_LONG);
-//                }
-//            });
-//        }
+        findViewById(R.id.theme_choose).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SelectThemeActivity.class);
+                intent.putExtra(SelectThemeActivity.EXTRA_THEME, storage.getSavedTheme());
+
+                launcher.launch(intent);
+            }
+        });
     }
 
     @Override

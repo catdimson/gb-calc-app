@@ -9,6 +9,16 @@
     android:background="@color/white"
     android:layout_column="4">
 
+    <Button
+        android:id="@+id/theme_choose"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/theme_choose"
+        tools:ignore="MissingConstraints"
+        android:textSize="14sp"/>
+
     <TextView
         android:id="@+id/result"
         android:layout_width="0dp"
@@ -25,7 +35,7 @@
         android:id="@+id/key_mult"
         android:layout_width="0dp"
         android:text="@string/mult"
-        style="@style/CalcButton.OperationButton"
+        style="@style/CalcButtonGeomAndSize.OperationButton"
         app:layout_constraintBottom_toTopOf="@id/key_minus"
         app:layout_constraintLeft_toRightOf="@id/key_div"
         app:layout_constraintRight_toRightOf="parent"/>
@@ -35,7 +45,7 @@
         android:layout_width="0dp"
         android:text="@string/div"
         android:layout_marginEnd="10dp"
-        style="@style/CalcButton.OperationButton"
+        style="@style/CalcButtonGeomAndSize.OperationButton"
         app:layout_constraintBottom_toTopOf="@id/key_9"
         app:layout_constraintLeft_toRightOf="@id/key_del"
         app:layout_constraintRight_toLeftOf="@id/key_mult"/>
@@ -45,7 +55,7 @@
         android:layout_width="0dp"
         android:text="@string/del"
         android:layout_marginEnd="10dp"
-        style="@style/CalcButton.CleanButton"
+        style="@style/CalcButtonGeomAndSize.CleanButton"
         app:layout_constraintBottom_toTopOf="@id/key_8"
         app:layout_constraintLeft_toRightOf="@id/key_clean"
         app:layout_constraintRight_toLeftOf="@id/key_div"/>
@@ -55,7 +65,7 @@
         android:layout_width="0dp"
         android:text="@string/clean"
         android:layout_marginEnd="10dp"
-        style="@style/CalcButton.CleanButton"
+        style="@style/CalcButtonGeomAndSize.CleanButton"
         app:layout_constraintBottom_toTopOf="@id/key_7"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/key_del"/>
@@ -64,7 +74,7 @@
         android:id="@+id/key_minus"
         android:layout_width="0dp"
         android:text="@string/minus"
-        style="@style/CalcButton.OperationButton"
+        style="@style/CalcButtonGeomAndSize.OperationButton"
         app:layout_constraintBottom_toTopOf="@id/key_plus"
         app:layout_constraintLeft_toRightOf="@id/key_9"
         app:layout_constraintRight_toRightOf="parent"/>
@@ -72,9 +82,9 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_9"
         android:layout_width="0dp"
+        style="@style/CalcButtonGeomAndSize"
         android:text="@string/num_9"
         android:layout_marginEnd="10dp"
-        style="@style/CalcButton"
         app:layout_constraintBottom_toTopOf="@id/key_6"
         app:layout_constraintLeft_toRightOf="@id/key_8"
         app:layout_constraintRight_toLeftOf="@id/key_minus"/>
@@ -82,9 +92,9 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_8"
         android:layout_width="0dp"
+        style="@style/CalcButtonGeomAndSize"
         android:text="@string/num_8"
         android:layout_marginEnd="10dp"
-        style="@style/CalcButton"
         app:layout_constraintBottom_toTopOf="@id/key_5"
         app:layout_constraintLeft_toRightOf="@id/key_7"
         app:layout_constraintRight_toLeftOf="@id/key_9"/>
@@ -92,9 +102,9 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_7"
         android:layout_width="0dp"
+        style="@style/CalcButtonGeomAndSize"
         android:text="@string/num_7"
         android:layout_marginEnd="10dp"
-        style="@style/CalcButton"
         app:layout_constraintBottom_toTopOf="@id/key_4"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/key_8"/>
@@ -103,7 +113,7 @@
         android:id="@+id/key_plus"
         android:layout_width="0dp"
         android:text="@string/plus"
-        style="@style/CalcButton.OperationButton"
+        style="@style/CalcButtonGeomAndSize.OperationButton"
         app:layout_constraintBottom_toTopOf="@id/key_result"
         app:layout_constraintLeft_toRightOf="@id/key_6"
         app:layout_constraintRight_toRightOf="parent"/>
@@ -111,9 +121,9 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_6"
         android:layout_width="0dp"
+        style="@style/CalcButtonGeomAndSize"
         android:text="@string/num_6"
         android:layout_marginEnd="10dp"
-        style="@style/CalcButton"
         app:layout_constraintBottom_toTopOf="@id/key_3"
         app:layout_constraintLeft_toRightOf="@id/key_5"
         app:layout_constraintRight_toLeftOf="@id/key_plus"/>
@@ -121,9 +131,9 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_5"
         android:layout_width="0dp"
+        style="@style/CalcButtonGeomAndSize"
         android:text="@string/num_5"
         android:layout_marginEnd="10dp"
-        style="@style/CalcButton"
         app:layout_constraintBottom_toTopOf="@id/key_2"
         app:layout_constraintLeft_toRightOf="@id/key_4"
         app:layout_constraintRight_toLeftOf="@id/key_6"/>
@@ -131,9 +141,9 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_4"
         android:layout_width="0dp"
+        style="@style/CalcButtonGeomAndSize"
         android:text="@string/num_4"
         android:layout_marginEnd="10dp"
-        style="@style/CalcButton"
         app:layout_constraintBottom_toTopOf="@id/key_1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/key_5"/>
@@ -141,9 +151,9 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_3"
         android:layout_width="0dp"
+        style="@style/CalcButtonGeomAndSize"
         android:text="@string/num_3"
         android:layout_marginEnd="10dp"
-        style="@style/CalcButton"
         app:layout_constraintBottom_toTopOf="@id/key_dot"
         app:layout_constraintLeft_toRightOf="@id/key_2"
         app:layout_constraintRight_toLeftOf="@id/key_result"/>
@@ -151,9 +161,9 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_2"
         android:layout_width="0dp"
+        style="@style/CalcButtonGeomAndSize"
         android:text="@string/num_2"
         android:layout_marginEnd="10dp"
-        style="@style/CalcButton"
         app:layout_constraintBottom_toTopOf="@id/key_0"
         app:layout_constraintLeft_toRightOf="@id/key_1"
         app:layout_constraintRight_toLeftOf="@id/key_3"/>
@@ -161,9 +171,9 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_1"
         android:layout_width="0dp"
+        style="@style/CalcButtonGeomAndSize"
         android:text="@string/num_1"
         android:layout_marginEnd="10dp"
-        style="@style/CalcButton"
         app:layout_constraintBottom_toTopOf="@id/key_0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/key_2"/>
@@ -171,8 +181,8 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_0"
         android:layout_width="0dp"
+        style="@style/CalcButtonGeomAndSize"
         android:text="@string/num_0"
-        style="@style/CalcButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="@id/key_2"/>
@@ -180,10 +190,10 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_dot"
         android:layout_width="0dp"
+        style="@style/CalcButtonGeomAndSize"
         android:text="@string/num_dot"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
-        style="@style/CalcButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/key_0"
         app:layout_constraintRight_toLeftOf="@id/key_result"/>
@@ -193,7 +203,7 @@
         android:layout_width="0dp"
         android:layout_height="160dp"
         android:text="@string/num_result"
-        style="@style/CalcButton.OperationButton"
+        style="@style/CalcButtonGeomAndSize.OperationButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/key_dot"
         app:layout_constraintRight_toRightOf="parent"/>
